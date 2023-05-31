@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'e_commerce',
 ]
 
-# AUTH_USER_MODEL = 'it_prof.User'
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
