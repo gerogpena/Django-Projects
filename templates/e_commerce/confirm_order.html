@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for cart_item in cart_items %}
+                <tr>
+                    <td>{{ cart_item.product.name }}</td>
+                    <td>{{ cart_item.quantity }}</td>
+                    <td>{{ cart_item.product.price }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2">
+                        <strong>Total Amount:</strong>
+                    </td>
+                    <td><strong>{{total_price}}</strong></td>
+                </tr>
+            </tbody>
+            </table>
+        <form method="post" action="">
+            {% csrf_token %}
+            <button type="submit">Proceed to Payment</button>
+          </form>
+      </div>
+    </div>
+  </div>
+  <br></br>
+
+  {% include 'footer.html' %}
+{% endblock %}

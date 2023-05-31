@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'tickets/ticket_header.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class = "col-md-6">
+            <form method="POST" action="{% url 'ticket_delete' ticket.id %}">
+                {% csrf_token %}
+                <p>Are you sure you want to delete "{{ticket}} "</p>
+                <a class="btn btn-primary" href="{% url 'ticket_list' %}">Cancel</a>
+                <input type="submit" value="Confirm" class="btn btn-primary"><br>
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'footer.html'%}
+{% endblock%}

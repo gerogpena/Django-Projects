@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Web Crawler - Crawled Pages</h1>
+    <ul>
+        {% for page in pages %}
+            <li>
+                <h2>{{ page.title }}</h2>
+                <p>{{ page.content }}</p>
+                <a href="{{ page.url }}">Visit Page</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

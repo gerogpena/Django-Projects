@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% include 'task_manager/taskmanager_header.html' %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Task Details</h2>
+        <table class="table table-bordered table-striped" >
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Status</th>
+          </tr>
+          <tr>
+            <td>{{ task.title }}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.created_by}}</td>
+            <td>{{task.status}}</td>
+          </tr>
+        </table>
+        <h4>Comments</h4>
+        {% if comments %}
+          <ul class="list-group">
+            {% for comment in comments %}
+              <li class="list-group-item">{{ comment.content }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No comments available.</p>
+        {% endif %}
+        <a class="btn btn-primary" href="{% url 'user_dashboard' %}">Back to Dashboard</a>
+      </div>
+    </div>
+  </div>
+  {% include 'footer.html' %}
+
+{% endblock %}

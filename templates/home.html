@@ -1,0 +1,124 @@
+{% extends 'base.html'%}
+
+{% block title %}Be the best version of yourself.{% endblock %}
+
+{% block content %}
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Welcome, {{ request.user }}</h2>
+            {% if messages %}
+                {% for msg in messages %}
+                <p>{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+    
+{% include 'header.html' %}
+
+<!-- Features -->
+<section class="page-section section-grey">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="title-section"><span class="title-regular">SPECIAL</span><br/>FEATURES</h2>
+                <hr class="title-underline " />
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div>
+                            <div>
+                                <i class="fa fa-code"></i>
+                            </div>
+                            <div>
+                                <h4>Clean Code</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <div>
+                                <i class="fa fa-expand"></i>
+                            </div>
+                            <div>
+                                <h4>Bootstrap 5</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <div>
+                                <i class="fa fa-font"></i>
+                            </div>
+                            <div>
+                                <h4>Font Awesome</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <div>
+                                <i class="fa fa-eye"></i>
+                            </div>
+                            <div>
+                                <h4>Color Options</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <div>
+                                <i class="fa fa-picture-o"></i>
+                            </div>
+                            <div>
+                                <h4>Clean Headers</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <div>
+                                <i class="fa fa-archive"></i>
+                            </div>
+                            <div>
+                                <h4>Portfolio</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <div>
+                                <i class="fa fa-expand"></i>
+                            </div>
+                            <div>
+                                <h4>Lightbox</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <div>
+                                <i class="fa fa-picture-o"></i>
+                            </div>
+                            <div>
+                                <h4>Gallery</h4>
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}
+{% endblock %}

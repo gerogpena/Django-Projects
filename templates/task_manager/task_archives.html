@@ -1,0 +1,41 @@
+<!-- task_archives.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'task_manager/taskmanager_header.html' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="list-group-item list-group-item-action active">Archived Tasks by: {{request.user}}</h3>
+                {% if archived_tasks %}
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    {% for task in archived_tasks %}
+                    <tr>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.status }}</td>
+                        <td>
+                            <a href="{% url 'update_task' task.id %}" class="btn btn-info btn-sm">Update</a>
+                            <a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm">Delete </a>
+                        </td>
+                    </tr>
+                    <!-- Display other task details as needed -->
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>No archived tasks found.</p>
+                {% endif %}
+                <a class="btn btn-primary" href="{% url 'user_dashboard' %}">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}

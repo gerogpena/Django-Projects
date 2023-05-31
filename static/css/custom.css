@@ -1,0 +1,27 @@
+/** Please add your Custom CSS here **/
+/* Logo Width */
+.logo {
+    max-width: 150px;
+}
+
+/* Margin Content */
+body,html {
+    margin-top: 25px;
+}
+@media (min-width: 768px) {
+    body {margin-top: 65px;}
+}
+
+/* Margin Navbar */
+.navbar-nav {
+    margin-top: 0;
+}
+
+.product-image {
+    max-width: 200px;
+    height: auto;
+  }
+
+.btn-group .btn {
+    margin-right: 10px; /* Adjust the spacing as per your preference */
+  }

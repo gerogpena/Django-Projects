@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                {% if cart_items %}
+                <h2>Cart Items</h2>
+
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart_item in cart_items %}
+                    <tr>
+                        <td>{{ cart_item.product.name }}</td>
+                        <td>{{ cart_item.quantity }}</td>
+                        <td>{{ cart_item.product.price }}</td>
+                        <td>
+                            <a href="#" class="btn btn-primary btn-xs">Change</a>
+                            <a href="#" class="btn btn-primary btn-xs">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            {% else %}
+                <h1>{{ message }}</h1>
+            {% endif %}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-1">
+                <a href="{% url 'e_commerce:confirm_order' %}" class="btn btn-primary btn-block mb-1">Confirm</a>
+            </div>
+            <div class="col-sm-1">
+                <a href="#" class="btn btn-primary btn-block mb-1">Cancel</a>
+            </div>
+            <div class="col-sm-1">
+                <a href="{% url 'e_commerce:product_list' %}" class="btn btn-primary btn-block mb-1">Back</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+{% endblock %}

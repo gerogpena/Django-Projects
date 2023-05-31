@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'tickets/ticket_header.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-info" href="{% url 'ticket_create' %}">Add New Ticket</a>
+            <a class="btn btn-info" href="{% url 'customer_view' %}">Customer List</a>
+            <a class="btn btn-info" href="{% url 'customer_add' %}">Add New Customer</a>
+        </div>
+        <br></br>
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Ticket ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in p_tickets %}
+                    <tr>
+                        <th scope="row">{{ ticket.id  }}</th>
+                        <td>{{ ticket.title }}</td>
+                        <td>{{ ticket.status }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'ticket_update' ticket.id %}">Update</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="{% url 'ticket_delete' ticket.id %}">Delete</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="{% url 'ticket_detail' ticket.id %}">View Detail</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'ticket_comment' ticket.id %}">Add Comment</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>{% if p_tickets.has_previous %}
+                <a href="?page=1">&laquo; First | </a>
+                <a href="?page={{ p_tickets.previous_page_number }}">Previous</a>
+            {% endif %}
+                | Page {{ p_tickets.number }} of {{ p_tickets.paginator.num_pages }} | 
+            {% if p_tickets.has_next  %}
+                <a href="?page={{p_tickets.next_page_number }}">Next | </a>
+                <a href="?page={{p_tickets.paginator.num_pages}}">Last &raquo;</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% include 'footer.html'%}
+{% endblock %}

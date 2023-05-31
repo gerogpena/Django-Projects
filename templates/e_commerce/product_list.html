@@ -1,0 +1,136 @@
+<!-- products.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="widget">
+        <form>
+            <div class="input-group input-group-lg">
+                <input class="form-control" placeholder="Search..." name="s" id="s" type="text">
+                <span class="input-group-btn"><button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-search"></i></button></span>
+            </div>
+        </form>
+      </div>
+      <hr class="divider margin-top-30 margin-bottom-30">
+      <div class="panel-group" id="accordion">
+        {% if request.user.is_superuser %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Admin Panel<b class="caret"></b></a></h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <ul class="nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Product<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'e_commerce:add_product' %}">Create</a></li>
+                    <li><a href="#">Update</a></li>
+                    <li><a href="#">Delete</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'e_commerce:add_category' %}">Create</a></li>
+                    <li><a href="#">Update</a></li>
+                    <li><a href="#">Delete</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Orders<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Change</a></li>
+                    <li><a href="#">Delete</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reviews<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Delete Reviews</a></li>
+                  </ul>
+                </li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Orders<b class="caret"></b></a></h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <ul class="nav">
+                <li><h5>Cart Items ({{item_count}})</h5></li>
+                <li><a href="{% url 'e_commerce:cart' %}">View Cart</a></li>
+                <li><a href="#">Wish List</a></li>
+                <li><a href="#">Add Reviews</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Category<b class="caret"></b></a></h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <ul class="nav">
+                {% for parent_category in parent_categories %}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ parent_category.name }}<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    {% for child_category in parent_category.children.all %}
+                    <li><a href="#">{{ child_category.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+ 
+        <hr class="divider margin-top-30 margin-bottom-30">
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="row">
+        {% for product, primary_image in zipped_data %}
+          {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+            </div><div class="row">
+          {% endif %}
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <div class="item">
+                {% if primary_image %}
+                <a class="fancybox-pop fancybox.image" href="{{ MEDIA_URL }}{{ primary_image.image.url }}" rel="">
+                  <img src="{{ MEDIA_URL }}{{ primary_image.image.url }}" class="img-responsive" alt="{{ product.title }}">
+                </a>
+                {% endif %}
+              </div>
+              <div class="caption">
+                <h4>{{ product.name }}</h4>
+                <!-- <p>{{ product.description }}</p> -->
+                <p>Price: ${{ product.price }}</p>
+                <p>
+                  <a href="{% url 'e_commerce:add_to_cart' slug=product.slug %}" class="btn btn-primary btn-xs" role="button">Add to Cart</a>
+                  <a href="{% url 'e_commerce:product_detail' slug=product.slug %}" class="btn btn-primary btn-xs" role="button">View Details</a>
+                  <a href="#" class="btn btn-primary btn-xs" role="button">Add to Wishlist</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+            <p>No products available.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>Product Detail</h1>
+                <div id="imageCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                    {% for image in images %}
+                        <li data-target="#imageCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                    {% endfor %}
+                    </ol>
+                
+                    <!-- Slides -->
+                    <div class="carousel-inner">
+                    {% for image in images %}
+                        <div class="item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ MEDIA_URL }}{{ image.image.url }}" alt="Image {{ forloop.counter }}">
+                            <div class="carousel-caption">
+                               
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#imageCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#imageCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+            <h3>{{product.name}}</h3>
+            <p>{{product.description}}</p>
+            <h4>Price: ${{product.price}}</h4>
+            <hr>
+            <a class="btn btn-primary" href="{% url 'e_commerce:product_list' %}">Back to Product List</a>
+            <br></br>
+        </div>
+    </div>
+{% endblock %}

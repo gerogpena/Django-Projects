@@ -1,0 +1,48 @@
+{% load static %}
+
+<!-- Navigation -->
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" style="padding:15px;">
+  <div class="container">
+      <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a href="{% url 'home' %}"><img class="logo" src="{% static 'img/new-logo.png'%}" alt="Logo"></a>
+          <p><span>Be the best version of yourself.</span></p>
+      </div>
+      <nav class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav navbar-right">
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">About Me</a></li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li class="dropdown-header">Django Projects</li>
+                      <li><a href="{% url 'ticket_list' %}">Ticket</a></li>
+                      <li><a href="{% url 'crawl' %}">Web Crawler</a></li>
+                      <li><a href="{% url 'user_dashboard'%}">Task Manager</a></li>
+                      <li><a href="{% url 'e_commerce:product_list'%}">E-Commerce</a></li>
+                      <li><a href="{% url 'e_commerce:add_category'%}">Category</a></li>
+                  </ul>
+              </li>
+              <li><a href="{% url 'blog' %}">Blog</a></li>
+              <li><a href="{% url 'contact' %}">Contact</a></li>
+              {%if user.is_authenticated %}
+             
+                  <li><a href="{% url 'users:logout' %}">Logout</a></li>
+              
+              {% else %}
+              
+                  <li><a href="{% url 'users:login' %}">Login</a></li>
+                  <li><a href="{% url 'users:signup' %}">SignUp</a></li>
+              {% endif %}
+            </ul>
+      </nav>
+      <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</div>

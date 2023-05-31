@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include 'tickets/ticket_header.html' %}
+    
+    <div class="container">
+        <div class="row">
+            <div class = "col-md-12">
+                <h4>Ticket Details</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Ticket Title:</td>
+                            <td>{{ ticket.title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Description:</td>
+                            <td>{{ ticket.description }}</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Full Name:</td>
+                            <td>{{ ticket.customer_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Author:</td>
+                            <td>{{ ticket.created_by }}</td>
+                        </tr>
+                        <tr>
+                            <td>Date Created:</td>
+                            <td>{{ ticket.created_at }}</td>
+                        </tr>
+                        <tr>
+                            <td>Date Updated:</td>
+                            <td>{{ ticket.updated_at }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ticket Status:</td>
+                            <td>{{ ticket.status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Comments</h4>
+                <hr>
+                {% for comment in comments %}
+                    <p>{{ comment.content }}</p>
+                    <p>Posted by: {{ comment.user.username }}</p>
+                    <hr>
+                {% empty %}
+                    <p>No comments yet.</p>
+                {% endfor %}
+                <a class="btn btn-primary btn-sm" href="{% url 'ticket_list' %}">&laquo; Back to All Ticket List</a>
+                <a class="btn btn-primary btn-sm" href="{% url 'ticket_comment' ticket.id %}">Add Comment</a>
+                <br></br>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html'%}
+{% endblock %}
