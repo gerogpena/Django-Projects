@@ -1,7 +1,7 @@
 # Personal Django Projects
 # ITMS
 # Application: Tickets app
-# Descrition: 
+# Description: 
 The Tickets app is an application that allows users to manage and track tickets or issues related to a particular system or project. It is commonly used in customer support, help desk, or project management scenarios to streamline ticketing workflows.
 
 # Features
@@ -25,7 +25,7 @@ Task Assignment: Tasks can be assigned to specific individuals or teams responsi
 Task Tracking: The app enables users to track the status and progress of each task. It provides visibility into tasks that are pending, in progress, or completed, allowing users to monitor project milestones and identify potential bottlenecks.
 
 # Application: E-commerce Website
-# Descrition:
+# Description:
 An e-commerce website is an online platform that enables businesses to sell products or services to customers over the internet. It provides a digital storefront where users can browse, select, and purchase items conveniently from the comfort of their homes or anywhere with internet access.
 
 # Features
